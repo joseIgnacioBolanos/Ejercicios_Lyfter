@@ -1,0 +1,1 @@
+hotel_california = {'name': 'California','number_of_starts': 5, 'rooms': [{'number': 5,'floor': 1,'price_per_night': 500}, {'number': 4,'floor': 1,'price_per_night': 500}, {'number': 2,'floor': 1,'price_per_night': 500}] }
