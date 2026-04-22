@@ -1,0 +1,9 @@
+ 
+Primer Commit (Initial Commit):
+•	Qué cambió: Se creó la estructura inicial del proyecto, se creó un repositorio en GitHub en donde tiene un archivo llamado README.MD, 
+•	Por qué se hizo ese cambio: Para inicializar el repositorio y así subir todos los archivos que hemos creado y poder manejar las versiones 
+
+Segundo Commit:
+
+•	Qué cambió: Se agregaron múltiples carpetas que incluyen los ejercicios hechos en los módulos dentro de la rama past-exercises con un mensaje que indica los cambios que se hicieron en este commit
+•	Por qué se hizo ese cambio: Para guardar los archivos y manejar un control de versiones 
