@@ -18,7 +18,7 @@ def reading_file_csv(file_path):
 
             
 def main():
-    reading_file_csv('c:/Users/bjoseign/Desktop/LYFTER/Ejercicios de Manejo de CSVs/videoGames.csv')
+    reading_file_csv('videoGames')
 
 
 main()
