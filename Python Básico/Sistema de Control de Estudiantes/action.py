@@ -137,8 +137,17 @@ def topThreeStudents(student_data):
 
 def printAverageGrades(student_data):
     if student_data:
+        class_average_grade=0.0
+        counter=0
         for student in student_data:
-            print(f"Nombre del Estudiante:{student['Name']}\nPromedio:{student['Average Grade']}")
+            for subject, grade in student.items():
+                if subject=='Name' or subject=='Section' or subject=='Average Grade':
+                        continue
+                else: 
+                    class_average_grade+= grade
+                    counter+=1
+        class_average_grade = class_average_grade / counter
+        print(f'El promedio de todos los estudinates es de {class_average_grade}')
     else:
         return print('Lista de estudiantes vacia')
 
