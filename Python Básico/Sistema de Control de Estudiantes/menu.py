@@ -3,28 +3,28 @@ import action, data
 def menu():
     students_list=[]
     while True:
-        userOption= action.is_valid_int('\nDigite:\n1. Para agregar Información de Estudiantes\n2. Para ver la lista de Estudiantes\n3. Para ver el top 3 de los estudiantes con la mejor nota promedio\n4. Para ver la nota promedio de todos los estudiantes\n5. Para eliminar un Estudiante\n6. Para ver los estudiantes reprobados\n7. Exportar todos los datos actuales a un archivo CSV.\n8. Para importar los datos de un archivo CSV previamente exportado.\n9. Para Salir\n')
-        if userOption == 1:
-            action.addingStudentData(students_list)
-        elif userOption == 2:
-            action.printStudentData(students_list)
-        elif userOption == 3:
-            action.topThreeStudents(students_list)
-        elif userOption == 4:
-            action.printAverageGrades(students_list)
-        elif userOption == 5:
-            action.removeStudent(students_list)
-        elif userOption == 6:
+        user_option= action.is_valid_int('\nEnter:\n1. To add a new student\n2. To view the list of students\n3. To view the top 3 students with the highest average grades\n4. To view the average note of all students.\n5. To remove a student\n6. To view the list of failed students\n7. To export the data to a CSV file.\n8. To import the CSV data previously exported.\n9. Exit\n')
+        if user_option == 1:
+            action.adding_student_data(students_list)
+        elif user_option == 2:
+            action.print_student_data(students_list)
+        elif user_option == 3:
+            action.top_three_students(students_list)
+        elif user_option == 4:
+            action.print_average_grades(students_list)
+        elif user_option == 5:
+            action.remove_student(students_list)
+        elif user_option == 6:
             action.failed_student_list(students_list)
-        elif userOption == 7:
+        elif user_option == 7:
             data.save_students("my_students_list.csv", students_list)
-        elif userOption == 8:
+        elif user_option == 8:
             students_list= data.import_students_data('my_students_list.csv')  
-        elif userOption == 9:
-            print('Cerrando programa..')
+        elif user_option == 9:
+            print('Closing..')
             break
                  
         else:
-            print('Valor ingresado inválido')
+            print('Invalid input value')
         
             

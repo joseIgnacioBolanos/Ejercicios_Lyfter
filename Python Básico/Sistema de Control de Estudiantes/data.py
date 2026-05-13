@@ -11,26 +11,34 @@ def save_students(file_path, data):
             writer.writeheader()
 
             writer.writerows(data)
+
+            print('Data successfully exported')
     else:
-         print('Lista de estudinates vacia')
+         print('Students list is empty')
 
 
 
 def import_students_data(file_path):
     new_student_list=[]
     temp_grade=0
+    temp_average_grade=0.0
     try:
         with open(file_path, 'r', encoding='utf-8') as file:
             reader = csv.DictReader(file)
             for student in reader: 
                 for subject, grade in student.items():
-                            if subject=='Name' or subject=='Section'or subject=='Average Grade':
+                            if subject=='Name' or subject=='Section':
                                 continue
+                            elif subject=='Average Grade':
+                                 temp_average_grade=float(grade)
+                                 student[subject]=temp_average_grade
                             else:
                                 temp_grade= int(grade)
                                 student[subject]=temp_grade
                 new_student_list.append(student) 
+        print('Data successfully imported')
         return new_student_list             
-    except FileNotFoundError:
-        print('Aun no existe el archivo que deseas abrir')
+    except FileNotFoundError as e:
+        print('ERROR! File not found')
+        return new_student_list
 

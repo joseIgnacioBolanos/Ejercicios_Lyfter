@@ -1,29 +1,29 @@
-def addingStudentData(students_list):
+def adding_student_data(students_list):
     while True:
         my_student={}
         name=''
         section= ''
-        spanishGrade=0
-        englishGrade=0
-        socialsGrade=0
-        scienceGrade=0
+        spanish_grade=0
+        english_grade=0
+        socials_grade=0
+        science_grade=0
         average_grade=0.0
         
-        name=is_valid_name('Digite el nombre del Estudiante ')
-        section=is_valid_section('Digite la sección del Estudiante, siga el formato válido (ejemplo: 10A, 11B, etc.)')
+        name=is_valid_name("Enter the student's name ")
+        section=is_valid_section("Enter the student's section. Follow the correct format (ex: 10A, 11B, etc.)")
         if student_exists(name, section, students_list):
             continue
-        englishGrade=validating_grade_input('Digite la nota de Ingles del Estudiante ')
-        spanishGrade=validating_grade_input('Digite la nota de Español del Estudiante ')
-        socialsGrade=validating_grade_input('Digite la nota de Sociales del Estudiante ')
-        scienceGrade=validating_grade_input('Digite la nota de Ciencias del Estudiante ')
+        english_grade=validating_grade_input("Enter the English Grade: ")
+        spanish_grade=validating_grade_input('Enter the Spanish Grade ')
+        socials_grade=validating_grade_input('Enter the Social Studies Grade ')
+        science_grade=validating_grade_input('Enter the Science Grade ')
         
         my_student['Name']= name
         my_student['Section']=section
-        my_student['English Grade']=englishGrade
-        my_student['Spanish Grade']=spanishGrade
-        my_student['Socials Grade']=socialsGrade
-        my_student['Science Grade']=scienceGrade
+        my_student['English Grade']=english_grade
+        my_student['Spanish Grade']=spanish_grade
+        my_student['Socials Grade']=socials_grade
+        my_student['Science Grade']=science_grade
         average_grade = (my_student['English Grade'] + my_student['Spanish Grade'] + my_student['Socials Grade'] + my_student['Science Grade']) / 4
         my_student['Average Grade']= average_grade
 
@@ -31,14 +31,14 @@ def addingStudentData(students_list):
 
         
         while True:
-            userOption= is_valid_int('Digite:\n1. Para continuar agregando mas Estudiantes.\n2. Para volver al menu Principal ')
-            if userOption == 2:
+            user_option= is_valid_int('Enter:\n1. To continue adding new students.\n2. To return to the main menu\n')
+            if user_option == 2:
                 return students_list
-            elif userOption==1:
+            elif user_option==1:
                 break
             else:
-                if userOption !=2 or userOption != 1:
-                    print('Valor ingresado incorrecto')
+                if user_option !=2 or user_option != 1:
+                    print('Invalid Option')
             
 
 def is_valid_section(message):
@@ -48,14 +48,14 @@ def is_valid_section(message):
          if section[0].isdigit() and section[1].isalpha():
             return section.upper()
          else:
-             print('Formato Invalido')
+             print('Invalid input value')
         elif len(section)== 3:
             if section[0].isdigit() and section[1].isdigit() and section[2].isalpha():
                return section.upper()
             else:
-                print('Formato Invalido')
+                print('Invalid input value')
         else:
-            print('Formato invalido')
+            print('Invalid input value')
 
 
 def is_valid_name(message):
@@ -73,7 +73,7 @@ def is_valid_name(message):
         if valid:
             return user_input.title()
         else:
-            print('El valor ingresado es Invalido')
+            print('Invalid input value')
 
 
 def validating_grade_input(message):
@@ -84,9 +84,9 @@ def validating_grade_input(message):
             if user_input_int >= 0 and user_input_int <=100:
                 return user_input_int
             else:
-                print('ERROR! La nota debe de estar entre 0 y 100')
+                print('ERROR! The grade must be between 0 and 100')
         except ValueError:
-            print('Valor ingresado es Invalido')
+            print('Invalid input value')
 
 
 def is_valid_int(message):
@@ -96,19 +96,19 @@ def is_valid_int(message):
             user_input_int= int(user_input)
             return user_input_int
         except ValueError:
-            print('Valor ingresado no valido')
+            print('Invalid input value')
 
 
-def printStudentData(student_data):
+def print_student_data(student_data):
     if student_data:
         for student in student_data:
-            print(f"Nombre del estudiante: {student['Name']}\nSección: {student['Section']}\nNota de Inglés {student['English Grade']}\nNota de Español {student['Spanish Grade']}\nNota de Sociales: {student['Socials Grade']}\nNota de Ciencias {student['Science Grade']}")
+            print(f"Student: {student['Name']}\nSection: {student['Section']}\nEnglish Grade {student['English Grade']}\nSpanish Grade {student['Spanish Grade']}\nSocials Studies Grade: {student['Socials Grade']}\nScience Grade: {student['Science Grade']}")
             print('\n')
     else:
-        return print('Lista de estudiantes vacia')
+        return print('Students list is empty')
 
 
-def topThreeStudents(student_data):
+def top_three_students(student_data):
     if student_data:
         new_student_data=[]
         for students in  student_data:
@@ -128,72 +128,65 @@ def topThreeStudents(student_data):
             top_three.append(higher)
             new_student_data.pop(index_to_be_removed)
         
-        print(f"Top 3 de los estudiantes con mejor nota promedio:")
+        print(f"Top 3 students with the highest average grade:")
         for student in top_three:
-            print(f"Nombre del estudiante:{student['Name']}\n")
+            print(f"Student:{student['Name']}\n")
     else:
-        return print('Lista de estudiantes vacia')
+        return print('Students list is empty')
     
 
-def printAverageGrades(student_data):
+def print_average_grades(student_data):
     if student_data:
         class_average_grade=0.0
-        counter=0
         for student in student_data:
-            for subject, grade in student.items():
-                if subject=='Name' or subject=='Section' or subject=='Average Grade':
-                        continue
-                else: 
-                    class_average_grade+= grade
-                    counter+=1
-        class_average_grade = class_average_grade / counter
-        print(f'El promedio de todos los estudinates es de {class_average_grade}')
+            class_average_grade+=student['Average Grade']
+        class_average_grade = class_average_grade // len(student_data)
+        print(f'The average grade is {class_average_grade}')
     else:
-        return print('Lista de estudiantes vacia')
+        return print('Students list is empty')
 
 
-def removeStudent(student_data):
+def remove_student(student_data):
     if student_data:
         counter=0
         index_to_be_removed= 0
         not_found=True
-        student_name=is_valid_name('Digite el nombre del estudiante a eliminar ')
-        student_section=is_valid_section('Digite la seccion del Estudiante ')
+        student_name=is_valid_name("Enter the student's name to be removed ")
+        student_section=is_valid_section("Enter the student's section: ")
         for student in student_data:
             if student['Name'] == student_name and student['Section']== student_section:
-                user_answer = is_valid_int(f"Seguro que desea eliminar a {student['Name']} de la seccion {student['Section']}? Digite:\n1. Para Sí\n2. Para No\n")
+                user_answer = is_valid_int(f"Are you sure you want to remove {student['Name']}. Section: {student['Section']}? Enter:\n1. Yes\n2. No\n")
                 if user_answer== 1:
                     index_to_be_removed=counter
                     student_data.pop(index_to_be_removed)
                     not_found=False
-                    print(f'El estudiante {student_name} de la seccion {student_section} fue eliminado')
+                    print(f'Student {student_name} from Section {student_section} was successfully removed')
                     break
                 elif user_answer==2:
                     not_found=False
                     break
                 else:
-                    print('Valor Ingresado no valido. Volviendo al menu...')
+                    print('Invalid input value. Returning to the main menu...')
                     not_found=False
                     break
             counter+=1
 
         if not_found: 
-                print(f'El estudiante {student_name} de la seccion {student_section} no existe')
+                print(f"Student {student_name} from section {student_section} doesn't exist")
     else:
-        return print('Lista de estudiantes vacia')
+        return print('Students list is empty')
 
 
 def student_exists(student_name, student_section, students_list):
     if students_list:
         for student in students_list:
             if student['Name']==student_name and student['Section']== student_section:
-                print(f"ERROR! El estudiante {student_name} de la seccion {student_section} ya existe. Ingrese uno nuevo \n")
+                print(f"ERROR! The student {student_name} from section: {student_section} already exist. Please enter a new student \n")
                 return True
 
 
 def failed_student_list(students_list):
     if students_list:
-        translator={'English Grade':'Nota de Ingles', 'Spanish Grade': 'Nota de Español', 'Socials Grade': 'Nota de Sociales', "Science Grade": 'Nota de Ciencias'}
         failed_students=[]
         if students_list:
             for student in students_list:
@@ -211,18 +204,20 @@ def failed_student_list(students_list):
                     my_student['Section']= student['Section']
                     failed_students.append(my_student)
 
-                    
-            for student in failed_students:
-                        print(f"Nombre: {student['Name']}\nSeccion: {student['Section']}")
-                        print('Materias Reprobadas:')
-                        for subject, grade in student.items():
-                            if subject=='Name' or subject=='Section' or subject=='Average Grade':
-                                continue
-                            else:
-                                print(f"{translator[subject]}: {grade} ")
-                        print('\n')
+            if failed_students:
+                for student in failed_students:
+                            print(f"Name: {student['Name']}\nSection: {student['Section']}")
+                            print('Failed Curses:')
+                            for subject, grade in student.items():
+                                if subject=='Name' or subject=='Section' or subject=='Average Grade':
+                                    continue
+                                else:
+                                    print(f"{subject}: {grade} ")
+                            print('\n')
+            else:
+                print("No failed students found")
     else:
-        return print('Lista de estudiantes vacia')
+        return print("Students list is empty")
 
             
 
