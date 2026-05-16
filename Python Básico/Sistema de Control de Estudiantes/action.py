@@ -140,7 +140,7 @@ def print_average_grades(student_data):
         class_average_grade=0.0
         for student in student_data:
             class_average_grade+=student['Average Grade']
-        class_average_grade = class_average_grade // len(student_data)
+        class_average_grade = class_average_grade / len(student_data)
         print(f'The average grade is {class_average_grade}')
     else:
         return print('Students list is empty')
@@ -207,7 +207,7 @@ def failed_student_list(students_list):
             if failed_students:
                 for student in failed_students:
                             print(f"Name: {student['Name']}\nSection: {student['Section']}")
-                            print('Failed Curses:')
+                            print('Failed Courses:')
                             for subject, grade in student.items():
                                 if subject=='Name' or subject=='Section' or subject=='Average Grade':
                                     continue
