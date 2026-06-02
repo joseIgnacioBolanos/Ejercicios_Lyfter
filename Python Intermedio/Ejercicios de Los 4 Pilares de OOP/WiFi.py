@@ -38,9 +38,11 @@ class SmartRouter(WiFi, Firewall, Monitoring):
         self.blocked_ips = blocked_ips
         self.network_speed = network_speed
 
+
+
 router = SmartRouter('KolbiABC', '1234', '10.254.100.5', 19.15)
 router.connectDevice('12345')
-router.blockIps()
+router.showBlockIps()
 router.showNetworkStatus()
 
 

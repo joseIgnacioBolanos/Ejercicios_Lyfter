@@ -6,13 +6,15 @@ class BankAccount():
         self.balance+= amount
 
     def substract_balance(self, amount):
-        current_balance = self.balance- amount
-        return current_balance
+        self.balance = self.balance - amount
+        return self.balance
 
 class SavingsAccount(BankAccount):
     def __init__(self, min_balance, balance):
-        self.min_balance = min_balance 
-        self.balance = balance
+        super().__init__(balance)
+        self.min_balance = min_balance
+
+        
 
     def substract_balance(self, amount):
         temp_balance= self.balance - amount
@@ -24,5 +26,5 @@ class SavingsAccount(BankAccount):
 
 
 my_SavingsAccount = SavingsAccount(2000, 5000)
-
 my_SavingsAccount.substract_balance(2000)
+print(my_SavingsAccount.balance)
