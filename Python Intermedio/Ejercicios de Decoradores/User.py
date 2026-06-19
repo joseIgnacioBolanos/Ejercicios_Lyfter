@@ -4,16 +4,8 @@ class User:
     def __init__(self, date_of_birth):
         self.date_of_birth = date_of_birth
 
-    def isAdult(func):
-        def wrapper(self):
-            user_age = func(self)
-            if user_age < 18:
-                raise ValueError('Menor de edad')
-            return user_age
-        return wrapper
-
     @property
-    @isAdult
+    
     def age(self):
         today = date.today()
 
@@ -33,7 +25,21 @@ class User:
 
         )
 
-    
 
-user = User(date(2017,11,3))
-print(user.age)
+def check_adult(func):
+    def wrapper(*args):
+            user_age = args[0].age
+            if user_age < 18:
+                raise ValueError('Menor de edad')
+            
+            return func(*args)
+    return wrapper
+
+@check_adult
+def create_bank_account(user):
+     return 'Cuenta creada'
+
+user = User(date(2000,11,3))
+
+result = create_bank_account(user)
+print(result)

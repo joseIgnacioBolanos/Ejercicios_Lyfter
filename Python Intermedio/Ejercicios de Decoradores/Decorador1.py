@@ -1,20 +1,25 @@
-class Calculator:
-       
-    def summingNumbers(func):
-        def wrapper(*args):
-            print(*args)
-            result= func(*args)
+def print_and_return(func):
+        def wrapper(*args, **kwargs):
+            print(args,kwargs)
+            result= func(*args, **kwargs)
             print(result)
             return result 
         return wrapper
 
-    @summingNumbers
-    def sums(self, *args):
+@print_and_return
+def sums( *args):
         total = 0
         for numbers in args:
             total+=numbers
 
         return total
 
-sum1 = Calculator()
-sum1.sums(5,8)
+@print_and_return
+def showPerson(**kwargs):
+      text=""
+      for key, value in kwargs.items():
+            print(f"{key}: {value}")
+           
+
+sums(3,4)
+showPerson(nombre = 'Jose', edad = 29, apellido = "Bolaños")
