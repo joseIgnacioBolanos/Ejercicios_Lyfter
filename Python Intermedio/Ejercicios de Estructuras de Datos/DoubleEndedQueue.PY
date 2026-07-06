@@ -15,8 +15,9 @@ class Dequeue:
             return
         
         new_node.next = self.head
+        self.head.previous= new_node
         self.head = new_node
-        self.previous= new_node
+        
     def push_right(self, new_node):
         if self.tail is None:
             self.tail = self.head = new_node
