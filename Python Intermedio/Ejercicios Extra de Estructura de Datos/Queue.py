@@ -6,10 +6,15 @@ class Node:
 
 
 class Queue():
-    def __init__(self, head):
-        self.head=  head
+    def __init__(self):
+        self.head=  None
    
-    def enqueue(self, new_node):
+    def enqueue(self, data):
+        new_node = Node(data)
+
+        if self.head is None:
+            self.head = new_node        
+            return
 
         current_node = self.head
 
@@ -19,23 +24,36 @@ class Queue():
         current_node.next = new_node
 
     def dequeue(self):
-        if self.head:
-            self.head= self.head.next
+        if self.head is None:
+            return None
 
-    def print_structure(self):
+      
+        removed = self.head
+        self.head= self.head.next
+        
+        return removed.data
+        
+
+
+    def print_all(self):
 
         current_node = self.head
-        while current_node is not None:
-            print(current_node.data)
+        while current_node:
+            if  current_node.next is  None:
+                print(current_node.data)
+            else:
+                print(current_node.data, end= " - > ")
             current_node = current_node.next
             
-node1= Node('A')
-q = Queue(node1)
+q = Queue()
 
-node2 = Node('B')
-q.enqueue(node2)
+q.enqueue('A')
+q.enqueue('B')
 
-node3 = Node('C')
-q.enqueue(node3)
+q.enqueue('C')
 
-q.print_structure()
+q.print_all()
+
+print(q.dequeue())
+
+q.print_all()

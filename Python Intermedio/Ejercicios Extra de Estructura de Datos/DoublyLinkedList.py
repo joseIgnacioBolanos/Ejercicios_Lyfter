@@ -58,15 +58,22 @@ class DoublyLinkedList:
 
     def print_forward(self):
         current_node = self.head
-        while current_node is not None:
-            print(current_node.data)
+        while current_node:
+            if current_node.next is None:
+                print(current_node.data)
+            else:
+                print(current_node.data, end= ' - > ')
             current_node = current_node.next
-
+            
     def print_backward(self):
         current_node = self.tail
-        while current_node is not None:
-            print(current_node.data)
+        while current_node:
+            if current_node.prev is None:
+                print(current_node.data)
+            else:
+                print(current_node.data, end= ' - > ')
             current_node = current_node.prev
+            
         
 
 
@@ -78,15 +85,18 @@ dll.append('B')
 dll.append('Ç')
 
 dll.print_forward()
+print('\n')
 dll.print_backward()
 
 dll.prepend('X')
 
-
+print('\n')
 dll.print_forward()
+print('\n')
 dll.print_backward()
-
+print('\n')
 dll.delete("B")
 
 dll.print_forward()
+print('\n')
 dll.print_backward()

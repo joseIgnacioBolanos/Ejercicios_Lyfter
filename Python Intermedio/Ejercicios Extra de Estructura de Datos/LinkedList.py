@@ -58,8 +58,12 @@ class LinkedList:
 
     def print_all(self):
         current_node = self.head
-        while current_node is not None:
-            print(current_node.data)
+
+        while current_node:
+            if current_node.next is None:
+                print(current_node.data)
+            else:
+                print(current_node.data, end= ' - > ')
             current_node = current_node.next
 
 
